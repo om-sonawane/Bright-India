@@ -40,7 +40,7 @@ export default function HomePage() {
       id: 3,
       name: "LED Strip Light 5M",
       category: "Decorative Lighting",
-      image: "/led_strips.jpg",
+      image: "/led.jpg",
       features: ["Flexible", "Cuttable", "Waterproof", "Multiple Colors"],
       description: "Create stunning ambient lighting with our flexible LED strips, perfect for any creative project.",
     },
@@ -76,7 +76,7 @@ export default function HomePage() {
     {
       name: "Outdoor Lighting",
       description: "Weather-resistant outdoor solutions",
-      image: "outdoor.jpg",
+      image: "/outdoor.jpg",
       productCount: "15+ Products",
     },
   ]

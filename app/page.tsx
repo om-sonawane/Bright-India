@@ -84,44 +84,48 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-   <header className="border-b border-[#58CCED] sticky top-0 bg-[#1B2A41] backdrop-blur-sm z-50 shadow-lg">
-  <div className="container mx-auto px-4 py-4">
+   <header className="border-b border-[#58CCED] sticky top-0 bg-[#1B2A41] backdrop-blur-md z-50 shadow-lg">
+  <div className="container mx-auto px-6 py-4">
     <div className="flex items-center justify-between">
-      <div className="flex items-center space-x-2">
-        <Zap className="h-8 w-8 text-[#FFD700]" />
-        <span className="text-2xl font-bold text-[#F0F0F0]">Bright India</span>
+      {/* Brand Logo */}
+      <div className="flex items-center space-x-3">
+        <div className="p-2 bg-[#FFD700]/10 rounded-full shadow-md">
+          <Zap className="h-7 w-7 text-[#FFD700]" />
+        </div>
+        <span className="text-2xl font-semibold tracking-wide text-[#F0F0F0]">Bright India</span>
       </div>
+
+      {/* Navigation Links */}
       <nav className="hidden md:flex items-center space-x-8">
-        <Link href="#home" className="text-[#F0F0F0] hover:text-[#FFD700] transition-colors font-medium">
-          Home
-        </Link>
-        <Link href="#products" className="text-[#F0F0F0] hover:text-[#FFD700] transition-colors font-medium">
-          Products
-        </Link>
-        <Link href="#about" className="text-[#F0F0F0] hover:text-[#FFD700] transition-colors font-medium">
-          About
-        </Link>
-        <Link href="#contact" className="text-[#F0F0F0] hover:text-[#FFD700] transition-colors font-medium">
-          Contact
-        </Link>
+        {["Home", "Products", "About", "Contact"].map((item) => (
+          <Link
+            key={item}
+            href={`#${item.toLowerCase()}`}
+            className="text-[#F0F0F0] hover:text-[#FFD700] transition duration-200 ease-in-out font-medium tracking-wide"
+          >
+            {item}
+          </Link>
+        ))}
       </nav>
-      <div className="hidden md:flex items-center space-x-3">
+
+      {/* Action Buttons */}
+      <div className="hidden md:flex items-center space-x-4">
         <Button
           variant="outline"
-          className="bg-transparent border border-[#FFD700] text-[#FFD700] hover:bg-[#FFD700]/10"
+          className="rounded-lg border border-[#FFD700] text-[#FFD700] hover:bg-[#FFD700]/10 px-4 py-2 transition duration-200 ease-in-out shadow-sm"
           onClick={() => setShowPhoneModal(true)}
         >
           <Phone className="h-4 w-4 mr-2" />
           Call Now
         </Button>
         <Button
-          className="bg-[#58CCED] hover:bg-[#4BB4D8] text-white shadow-lg"
-          onClick={() => {
+          className="bg-[#58CCED] hover:bg-[#4BB4D8] text-white rounded-lg px-4 py-2 shadow-md transition duration-200 ease-in-out"
+          onClick={() =>
             window.open(
               "https://wa.me/919325595711?text=Hi%20Bright%20India,%20I%20would%20like%20to%20get%20a%20quote%20for%20LED%20lighting%20products.",
-              "_blank",
+              "_blank"
             )
-          }}
+          }
         >
           Get Quote
         </Button>
@@ -129,6 +133,7 @@ export default function HomePage() {
     </div>
   </div>
 </header>
+
 
 
       {/* Phone Modal */}
@@ -184,7 +189,7 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-              Illuminating India with
+              illuminating India with
               <span className="text-yellow-500 block">Premium LED Solutions</span>
             </h1>
             <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
@@ -192,43 +197,25 @@ export default function HomePage() {
               commercial solutions, we light up your world.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-yellow-500 hover:bg-yellow-600 text-white">
+                <Button
+                onClick={() => {
+                  const section = document.getElementById("products")
+                  if (section) {
+                  section.scrollIntoView({ behavior: "smooth" })
+                  }
+                }}
+                className="flex items-center justify-center"
+                >
                 Explore Products
                 <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-              <Button size="lg" variant="outline">
-                Learn More
-              </Button>
+                </Button>
+             
             </div>
           </div>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-gray-900 mb-2">500+</div>
-              <div className="text-gray-600">Products</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-gray-900 mb-2">10K+</div>
-              <div className="text-gray-600">Happy Customers</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-gray-900 mb-2">5+</div>
-              <div className="text-gray-600">Years Experience</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-gray-900 mb-2">99%</div>
-              <div className="text-gray-600">Satisfaction Rate</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Products */}
+     {/* Featured Products */}
       <section id="products" className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
@@ -263,12 +250,7 @@ export default function HomePage() {
                         </div>
                       ))}
                     </div>
-                    <Button
-                      variant="outline"
-                      className="w-full mt-4 group-hover:bg-yellow-500 group-hover:text-white group-hover:border-yellow-500 transition-colors bg-transparent"
-                    >
-                      View Details
-                    </Button>
+                   
                   </div>
                 </CardContent>
               </Card>

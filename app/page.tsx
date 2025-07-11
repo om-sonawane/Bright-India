@@ -1,23 +1,35 @@
-"use client"
+"use client";
 
-import { ArrowRight, Award, CheckCircle, Mail, MapPin, Phone, Star, Zap, Copy, X, Menu } from "lucide-react"
-import Image from "next/image"
-import Link from "next/link"
-import { useState } from "react"
+import {
+  ArrowRight,
+  Award,
+  CheckCircle,
+  Mail,
+  MapPin,
+  Phone,
+  Star,
+  Zap,
+  Copy,
+  X,
+  Menu,
+} from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 
 export default function HomePage() {
-  const [showPhoneModal, setShowPhoneModal] = useState(false)
-  const [copied, setCopied] = useState(false)
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [showPhoneModal, setShowPhoneModal] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleCopyPhone = () => {
-    navigator.clipboard.writeText("+91 9325595711")
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
-  }
+    navigator.clipboard.writeText("+91 9325595711");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   const featuredProducts = [
     {
@@ -25,7 +37,12 @@ export default function HomePage() {
       name: "LED Smart Bulb 9W",
       category: "Smart Lighting",
       image: "/light_bulb.jpg",
-      features: ["WiFi Enabled", "16M Colors", "Voice Control", "Energy Efficient"],
+      features: [
+        "WiFi Enabled",
+        "16M Colors",
+        "Voice Control",
+        "Energy Efficient",
+      ],
       description:
         "Transform your space with our smart LED bulb featuring millions of colors and voice control compatibility.",
     },
@@ -35,7 +52,8 @@ export default function HomePage() {
       category: "Commercial Lighting",
       image: "/panel_light.jpg",
       features: ["Ultra Slim", "High Brightness", "Long Lasting", "Cool White"],
-      description: "Perfect for offices and commercial spaces with uniform light distribution and modern design.",
+      description:
+        "Perfect for offices and commercial spaces with uniform light distribution and modern design.",
     },
     {
       id: 3,
@@ -43,7 +61,8 @@ export default function HomePage() {
       category: "Decorative Lighting",
       image: "/led.jpg",
       features: ["Flexible", "Cuttable", "Waterproof", "Multiple Colors"],
-      description: "Create stunning ambient lighting with our flexible LED strips, perfect for any creative project.",
+      description:
+        "Create stunning ambient lighting with our flexible LED strips, perfect for any creative project.",
     },
     {
       id: 4,
@@ -51,9 +70,10 @@ export default function HomePage() {
       category: "Outdoor Lighting",
       image: "/flood_light.jpg",
       features: ["Weather Resistant", "High Lumen", "Wide Beam", "Durable"],
-      description: "Illuminate large outdoor areas with our powerful and weather-resistant LED flood lights.",
+      description:
+        "Illuminate large outdoor areas with our powerful and weather-resistant LED flood lights.",
     },
-  ]
+  ];
 
   const categories = [
     {
@@ -80,31 +100,50 @@ export default function HomePage() {
       image: "/outdoor.jpg",
       productCount: "15+ Products",
     },
-  ]
+  ];
 
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
       <header className="border-b border-gray-200 sticky top-0 bg-white/95 backdrop-blur-sm z-50 shadow-sm">
-        <div className="container mx-auto px-4 py-4">
+        <div className="container mx-auto px-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
-              <Zap className="h-8 w-8 text-[#FBB034]" />
-              <span className="text-2xl font-bold text-gray-900">Bright India</span>
+              <Image
+              src="/logo.png"
+              alt="Bright India Logo"
+              height={100}
+              width={40}
+              className="mb-2"
+              />
+
+              <span className="text-2xl font-bold text-gray-900"></span>
             </div>
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-8">
-              <Link href="#home" className="text-gray-600 hover:text-[#006D77] transition-colors font-medium">
+              <Link
+                href="#home"
+                className="text-gray-600 hover:text-[#006D77] transition-colors font-medium"
+              >
                 Home
               </Link>
-              <Link href="#products" className="text-gray-600 hover:text-[#006D77] transition-colors font-medium">
+              <Link
+                href="#products"
+                className="text-gray-600 hover:text-[#006D77] transition-colors font-medium"
+              >
                 Products
               </Link>
-              <Link href="#about" className="text-gray-600 hover:text-[#006D77] transition-colors font-medium">
+              <Link
+                href="#about"
+                className="text-gray-600 hover:text-[#006D77] transition-colors font-medium"
+              >
                 About
               </Link>
-              <Link href="#contact" className="text-gray-600 hover:text-[#006D77] transition-colors font-medium">
+              <Link
+                href="#contact"
+                className="text-gray-600 hover:text-[#006D77] transition-colors font-medium"
+              >
                 Contact
               </Link>
             </nav>
@@ -124,8 +163,8 @@ export default function HomePage() {
                 onClick={() => {
                   window.open(
                     "https://wa.me/919325595711?text=Hi%20Bright%20India,%20I%20would%20like%20to%20get%20a%20quote%20for%20LED%20lighting%20products.",
-                    "_blank",
-                  )
+                    "_blank"
+                  );
                 }}
               >
                 Get Quote
@@ -181,8 +220,8 @@ export default function HomePage() {
                   variant="outline"
                   className="w-full bg-white border-[#006D77] text-[#006D77] hover:bg-[#006D77] hover:text-white"
                   onClick={() => {
-                    setShowPhoneModal(true)
-                    setMobileMenuOpen(false)
+                    setShowPhoneModal(true);
+                    setMobileMenuOpen(false);
                   }}
                 >
                   <Phone className="h-4 w-4 mr-2" />
@@ -193,9 +232,9 @@ export default function HomePage() {
                   onClick={() => {
                     window.open(
                       "https://wa.me/919325595711?text=Hi%20Bright%20India,%20I%20would%20like%20to%20get%20a%20quote%20for%20LED%20lighting%20products.",
-                      "_blank",
-                    )
-                    setMobileMenuOpen(false)
+                      "_blank"
+                    );
+                    setMobileMenuOpen(false);
                   }}
                 >
                   Get Quote
@@ -224,16 +263,24 @@ export default function HomePage() {
               <div className="w-16 h-16 bg-[#006D77]/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Phone className="h-8 w-8 text-[#006D77]" />
               </div>
-              <p className="text-[#666666] mb-4">Call us directly for immediate assistance</p>
+              <p className="text-[#666666] mb-4">
+                Call us directly for immediate assistance
+              </p>
 
               <div className="bg-gray-50 rounded-lg p-4 mb-4">
-                <div className="text-2xl font-bold text-gray-900 mb-2">+91 9325595711</div>
+                <div className="text-2xl font-bold text-gray-900 mb-2">
+                  +91 9325595711
+                </div>
                 <div className="text-lg text-gray-700"> Ganesh Nimbalkar</div>
               </div>
 
               <Button
                 onClick={handleCopyPhone}
-                className={`w-full ${copied ? "bg-green-500 hover:bg-green-600" : "bg-[#006D77] hover:bg-[#006D77]/90"} text-white transition-colors`}
+                className={`w-full ${
+                  copied
+                    ? "bg-green-500 hover:bg-green-600"
+                    : "bg-[#006D77] hover:bg-[#006D77]/90"
+                } text-white transition-colors`}
               >
                 {copied ? (
                   <>
@@ -249,25 +296,36 @@ export default function HomePage() {
               </Button>
             </div>
 
-            <div className="text-center text-sm text-gray-500">Available Mon-Sat, 9 AM - 7 PM</div>
+            <div className="text-center text-sm text-gray-500">
+              Available Mon-Sat, 9 AM - 7 PM
+            </div>
           </div>
         </div>
       )}
 
       {/* Hero Section */}
-      <section id="home" className="py-20 bg-gradient-to-br from-[#F5F5F5] to-white">
+      <section
+        id="home"
+        className="py-20 bg-gradient-to-br from-[#F5F5F5] to-white"
+      >
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
               Illuminating India with
-              <span className="text-[#FBB034] block">Premium LED Solutions</span>
+              <span className="text-[#FBB034] block">
+                Premium LED Solutions
+              </span>
             </h1>
             <p className="text-xl text-[#666666] mb-8 max-w-2xl mx-auto">
-              Leading manufacturer and supplier of energy-efficient LED lighting products. From smart bulbs to
-              commercial solutions, we light up your world.
+              Leading manufacturer and supplier of energy-efficient LED lighting
+              products. From smart bulbs to commercial solutions, we light up
+              your world.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-[#006D77] hover:bg-[#006D77]/90 text-white">
+              <Button
+                size="lg"
+                className="bg-[#006D77] hover:bg-[#006D77]/90 text-white"
+              >
                 Explore Products
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
@@ -307,15 +365,21 @@ export default function HomePage() {
       <section id="products" className="py-20 bg-[#F5F5F5]">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Featured Products</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Featured Products
+            </h2>
             <p className="text-xl text-[#666666] max-w-2xl mx-auto">
-              Discover our most popular LED lighting solutions designed for modern living and working spaces.
+              Discover our most popular LED lighting solutions designed for
+              modern living and working spaces.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {featuredProducts.map((product) => (
-              <Card key={product.id} className="group hover:shadow-lg transition-shadow duration-300 border-0 bg-white">
+              <Card
+                key={product.id}
+                className="group hover:shadow-lg transition-shadow duration-300 border-0 bg-white"
+              >
                 <CardContent className="p-0">
                   <div className="aspect-square overflow-hidden rounded-t-lg">
                     <Image
@@ -327,12 +391,21 @@ export default function HomePage() {
                     />
                   </div>
                   <div className="p-6">
-                    <div className="text-sm text-[#FBB034] font-medium mb-2">{product.category}</div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-3">{product.name}</h3>
-                    <p className="text-[#666666] text-sm mb-4">{product.description}</p>
+                    <div className="text-sm text-[#FBB034] font-medium mb-2">
+                      {product.category}
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                      {product.name}
+                    </h3>
+                    <p className="text-[#666666] text-sm mb-4">
+                      {product.description}
+                    </p>
                     <div className="space-y-2">
                       {product.features.slice(0, 2).map((feature, index) => (
-                        <div key={index} className="flex items-center text-sm text-[#666666]">
+                        <div
+                          key={index}
+                          className="flex items-center text-sm text-[#666666]"
+                        >
                           <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
                           {feature}
                         </div>
@@ -356,9 +429,12 @@ export default function HomePage() {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Product Categories</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Product Categories
+            </h2>
             <p className="text-xl text-[#666666] max-w-2xl mx-auto">
-              Explore our comprehensive range of LED lighting solutions for every need.
+              Explore our comprehensive range of LED lighting solutions for
+              every need.
             </p>
           </div>
 
@@ -374,9 +450,13 @@ export default function HomePage() {
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">{category.name}</h3>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                  {category.name}
+                </h3>
                 <p className="text-[#666666] mb-2">{category.description}</p>
-                <div className="text-sm text-[#FBB034] font-medium">{category.productCount}</div>
+                <div className="text-sm text-[#FBB034] font-medium">
+                  {category.productCount}
+                </div>
               </div>
             ))}
           </div>
@@ -387,10 +467,12 @@ export default function HomePage() {
       <section className="py-20 bg-[#F5F5F5]">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Previous Work</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Our Previous Work
+            </h2>
             <p className="text-xl text-[#666666] max-w-2xl mx-auto">
-              Trusted by major infrastructure projects across India. See how we've illuminated critical transportation
-              networks.
+              Trusted by major infrastructure projects across India. See how
+              we've illuminated critical transportation networks.
             </p>
           </div>
 
@@ -409,21 +491,36 @@ export default function HomePage() {
               <CardContent className="p-8">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
-                    <Zap className="h-6 w-6 text-[#FBB034]" />
+                    <Image
+                      src="/logo.png"
+                      alt="Bright India Logo"
+                      width={24}
+                      height={24}
+                      className="h-6 w-6"
+                    />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold text-gray-900">Central Railways</h3>
-                    <p className="text-blue-600 font-medium">Lighting Systems Contract</p>
+                    <h3 className="text-2xl font-bold text-gray-900">
+                      Central Railways
+                    </h3>
+                    <p className="text-blue-600 font-medium">
+                      Lighting Systems Contract
+                    </p>
                   </div>
                 </div>
                 <p className="text-gray-600 mb-6">
-                  We successfully completed a comprehensive LED lighting upgrade for Central Railways at Pune Station.
-                  Our energy-efficient solutions significantly reduced power consumption while dramatically improving visibility and safety for commuters and staff.
+                  We successfully completed a comprehensive LED lighting upgrade
+                  for Central Railways at Pune Station. Our energy-efficient
+                  solutions significantly reduced power consumption while
+                  dramatically improving visibility and safety for commuters and
+                  staff.
                 </p>
                 <div className="grid grid-cols-2 gap-4 mb-6">
                   <div className="text-center p-4 bg-gray-50 rounded-lg">
-                    <div className="text-2xl font-bold text-gray-900">50+</div>
-                    <div className="text-sm text-[#666666]">Railway Stations</div>
+                    <div className="text-2xl font-bold text-gray-900">PUNE</div>
+                    <div className="text-sm text-[#666666]">
+                      Railway Station
+                    </div>
                   </div>
                   <div className="text-center p-4 bg-gray-50 rounded-lg">
                     <div className="text-2xl font-bold text-gray-900">60%</div>
@@ -461,17 +558,28 @@ export default function HomePage() {
               <CardContent className="p-8">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mr-4">
-                    <Zap className="h-6 w-6 text-[#FBB034]" />
+                    <Image
+                      src="/logo.png"
+                      alt="Bright India Logo"
+                      width={24}
+                      height={24}
+                      className="h-6 w-6"
+                    />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold text-gray-900">National Highways</h3>
-                    <p className="text-orange-600 font-medium">Street Lighting Project</p>
+                    <h3 className="text-2xl font-bold text-gray-900">
+                      National Highways
+                    </h3>
+                    <p className="text-orange-600 font-medium">
+                      Street Lighting Project
+                    </p>
                   </div>
                 </div>
                 <p className="text-[#666666] mb-6">
-                  Illuminated 200+ kilometers of national highways with our high-performance LED street lights. The
-                  project enhanced road safety during night hours while maintaining optimal energy efficiency and
-                  minimal maintenance requirements.
+                  Illuminated 200+ kilometers of national highways with our
+                  high-performance LED street lights. The project enhanced road
+                  safety during night hours while maintaining optimal energy
+                  efficiency and minimal maintenance requirements.
                 </p>
                 <div className="grid grid-cols-2 gap-4 mb-6">
                   <div className="text-center p-4 bg-gray-50 rounded-lg">
@@ -480,7 +588,9 @@ export default function HomePage() {
                   </div>
                   <div className="text-center p-4 bg-gray-50 rounded-lg">
                     <div className="text-2xl font-bold text-gray-900">70%</div>
-                    <div className="text-sm text-[#666666]">Accident Reduction</div>
+                    <div className="text-sm text-[#666666]">
+                      Accident Reduction
+                    </div>
                   </div>
                 </div>
                 <div className="space-y-2">
@@ -504,7 +614,9 @@ export default function HomePage() {
           <div className="text-center mt-12">
             <div className="inline-flex items-center px-6 py-3 bg-[#FBB034]/5 rounded-full">
               <Award className="h-5 w-5 text-[#FBB034] mr-2" />
-              <span className="text-[#006D77] font-medium">Trusted by Government Infrastructure Projects</span>
+              <span className="text-[#006D77] font-medium">
+                Trusted by Government Infrastructure Projects
+              </span>
             </div>
           </div>
         </div>
@@ -515,31 +627,43 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-4xl font-bold text-gray-900 mb-6">About Bright India</h2>
+              <h2 className="text-4xl font-bold text-gray-900 mb-6">
+                About Bright India
+              </h2>
               <p className="text-lg text-[#666666] mb-6">
-                We are a leading manufacturer and supplier of premium LED lighting solutions in India. With over 5 years
-                of experience, we've been at the forefront of the LED revolution, providing energy-efficient and
-                innovative lighting products.
+                We are a leading manufacturer and supplier of premium LED
+                lighting solutions in India. With over 5 years of experience,
+                we've been at the forefront of the LED revolution, providing
+                energy-efficient and innovative lighting products.
               </p>
               <p className="text-lg text-[#666666] mb-8">
-                Our commitment to quality, innovation, and customer satisfaction has made us a trusted name in the
-                lighting industry. We serve both residential and commercial markets with a wide range of products
-                designed to meet diverse lighting needs.
+                Our commitment to quality, innovation, and customer satisfaction
+                has made us a trusted name in the lighting industry. We serve
+                both residential and commercial markets with a wide range of
+                products designed to meet diverse lighting needs.
               </p>
 
               <div className="grid grid-cols-2 gap-6">
                 <div className="flex items-start space-x-3">
                   <Award className="h-6 w-6 text-[#FBB034] mt-1" />
                   <div>
-                    <h4 className="font-semibold text-gray-900">Quality Assured</h4>
-                    <p className="text-[#666666] text-sm">ISO certified manufacturing</p>
+                    <h4 className="font-semibold text-gray-900">
+                      Quality Assured
+                    </h4>
+                    <p className="text-[#666666] text-sm">
+                      ISO certified manufacturing
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
                   <Zap className="h-6 w-6 text-[#FBB034] mt-1" />
                   <div>
-                    <h4 className="font-semibold text-gray-900">Energy Efficient</h4>
-                    <p className="text-[#666666] text-sm">Up to 80% energy savings</p>
+                    <h4 className="font-semibold text-gray-900">
+                      Energy Efficient
+                    </h4>
+                    <p className="text-[#666666] text-sm">
+                      Up to 80% energy savings
+                    </p>
                   </div>
                 </div>
               </div>
@@ -562,9 +686,12 @@ export default function HomePage() {
       <section id="contact" className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Get In Touch</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Get In Touch
+            </h2>
             <p className="text-xl text-[#666666] max-w-2xl mx-auto">
-              Ready to illuminate your space? Contact us for quotes, product information, or any inquiries.
+              Ready to illuminate your space? Contact us for quotes, product
+              information, or any inquiries.
             </p>
           </div>
 
@@ -573,25 +700,29 @@ export default function HomePage() {
               <div className="w-16 h-16 bg-[#FBB034]/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Phone className="h-8 w-8 text-[#FBB034]" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Call Us</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                Call Us
+              </h3>
               <p className="text-gray-600">+91 9325595711</p>
-              
             </div>
 
             <div className="text-center">
               <div className="w-16 h-16 bg-[#FBB034]/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Mail className="h-8 w-8 text-[#FBB034]" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Email Us</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                Email Us
+              </h3>
               <p className="text-gray-600">info@brightindia.com</p>
-              
             </div>
 
             <div className="text-center">
               <div className="w-16 h-16 bg-[#FBB034]/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <MapPin className="h-8 w-8 text-[#FBB034]" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Visit Us</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                Visit Us
+              </h3>
               <p className="text-gray-600">164 Somwar Peth</p>
               <p className="text-gray-600">Pune</p>
             </div>
@@ -614,8 +745,8 @@ export default function HomePage() {
             onClick={() => {
               window.open(
                 "https://wa.me/919325595711?text=Hi%20Bright%20India,%20I%20would%20like%20to%20get%20a%20quote%20for%20LED%20lighting%20products.",
-                "_blank",
-              )
+                "_blank"
+              );
             }}
           >
             Get Quote
@@ -629,11 +760,18 @@ export default function HomePage() {
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <div className="flex items-center space-x-2 mb-4">
-                <Zap className="h-6 w-6 text-[#FBB034]" />
+                <Image
+                  src="/logo.png"
+                  alt="Bright India Logo"
+                  width={24}
+                  height={24}
+                  className="h-6 w-6"
+                />
                 <span className="text-xl font-bold">Bright India</span>
               </div>
               <p className="text-[#CCCCCC] mb-4">
-                Leading the LED revolution with premium lighting solutions for modern India.
+                Leading the LED revolution with premium lighting solutions for
+                modern India.
               </p>
               <div className="flex space-x-2">
                 <div className="flex items-center">
@@ -651,22 +789,34 @@ export default function HomePage() {
               <h4 className="text-lg font-semibold mb-4">Products</h4>
               <ul className="space-y-2 text-[#CCCCCC]">
                 <li>
-                  <Link href="#products" className="hover:text-white transition-colors">
+                  <Link
+                    href="#products"
+                    className="hover:text-white transition-colors"
+                  >
                     Smart Lighting
                   </Link>
                 </li>
                 <li>
-                  <Link href="#products" className="hover:text-white transition-colors">
+                  <Link
+                    href="#products"
+                    className="hover:text-white transition-colors"
+                  >
                     Commercial Lighting
                   </Link>
                 </li>
                 <li>
-                  <Link href="#products" className="hover:text-white transition-colors">
+                  <Link
+                    href="#products"
+                    className="hover:text-white transition-colors"
+                  >
                     Decorative Lighting
                   </Link>
                 </li>
                 <li>
-                  <Link href="#products" className="hover:text-white transition-colors">
+                  <Link
+                    href="#products"
+                    className="hover:text-white transition-colors"
+                  >
                     Outdoor Lighting
                   </Link>
                 </li>
@@ -677,22 +827,34 @@ export default function HomePage() {
               <h4 className="text-lg font-semibold mb-4">Company</h4>
               <ul className="space-y-2 text-[#CCCCCC]">
                 <li>
-                  <Link href="#about" className="hover:text-white transition-colors">
+                  <Link
+                    href="#about"
+                    className="hover:text-white transition-colors"
+                  >
                     About Us
                   </Link>
                 </li>
                 <li>
-                  <Link href="mailto:info@brightindia.com" className="hover:text-white transition-colors">
+                  <Link
+                    href="mailto:info@brightindia.com"
+                    className="hover:text-white transition-colors"
+                  >
                     Manufacturing
                   </Link>
                 </li>
                 <li>
-                  <Link href="tel:+919325595711" className="hover:text-white transition-colors">
+                  <Link
+                    href="tel:+919325595711"
+                    className="hover:text-white transition-colors"
+                  >
                     Quality
                   </Link>
                 </li>
                 <li>
-                  <Link href="mailto:careers@brightindia.com" className="hover:text-white transition-colors">
+                  <Link
+                    href="mailto:careers@brightindia.com"
+                    className="hover:text-white transition-colors"
+                  >
                     Careers
                   </Link>
                 </li>
@@ -703,22 +865,34 @@ export default function HomePage() {
               <h4 className="text-lg font-semibold mb-4">Support</h4>
               <ul className="space-y-2 text-[#CCCCCC]">
                 <li>
-                  <Link href="#contact" className="hover:text-white transition-colors">
+                  <Link
+                    href="#contact"
+                    className="hover:text-white transition-colors"
+                  >
                     Contact Us
                   </Link>
                 </li>
                 <li>
-                  <Link href="mailto:support@brightindia.com" className="hover:text-white transition-colors">
+                  <Link
+                    href="mailto:support@brightindia.com"
+                    className="hover:text-white transition-colors"
+                  >
                     Installation Guide
                   </Link>
                 </li>
                 <li>
-                  <Link href="tel:+919876543210" className="hover:text-white transition-colors">
+                  <Link
+                    href="tel:+919876543210"
+                    className="hover:text-white transition-colors"
+                  >
                     Warranty
                   </Link>
                 </li>
                 <li>
-                  <Link href="mailto:support@brightindia.com" className="hover:text-white transition-colors">
+                  <Link
+                    href="mailto:support@brightindia.com"
+                    className="hover:text-white transition-colors"
+                  >
                     FAQ
                   </Link>
                 </li>
@@ -727,10 +901,13 @@ export default function HomePage() {
           </div>
 
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-[#CCCCCC]">
-            <p>&copy; 2024 Bright India. All rights reserved. | Illuminating India with Premium LED Solutions</p>
+            <p>
+              &copy; 2024 Bright India. All rights reserved. | Illuminating
+              India with Premium LED Solutions
+            </p>
           </div>
         </div>
       </footer>
     </div>
-  )
+  );
 }

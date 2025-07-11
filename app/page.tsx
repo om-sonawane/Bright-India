@@ -1,6 +1,6 @@
 "use client"
 
-import { ArrowRight, Award, CheckCircle, Mail, MapPin, Phone, Star, Zap, Copy, X } from "lucide-react"
+import { ArrowRight, Award, CheckCircle, Mail, MapPin, Phone, Star, Zap, Copy, X, Menu } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react"
@@ -11,6 +11,7 @@ import { Card, CardContent } from "@/components/ui/card"
 export default function HomePage() {
   const [showPhoneModal, setShowPhoneModal] = useState(false)
   const [copied, setCopied] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   const handleCopyPhone = () => {
     navigator.clipboard.writeText("+91 9325595711")
@@ -84,57 +85,126 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-   <header className="border-b border-[#58CCED] sticky top-0 bg-[#1B2A41] backdrop-blur-md z-50 shadow-lg">
-  <div className="container mx-auto px-6 py-4">
-    <div className="flex items-center justify-between">
-      {/* Brand Logo */}
-      <div className="flex items-center space-x-3">
-        <div className="p-2 bg-[#FFD700]/10 rounded-full shadow-md">
-          <Zap className="h-7 w-7 text-[#FFD700]" />
+      <header className="border-b border-gray-200 sticky top-0 bg-white/95 backdrop-blur-sm z-50 shadow-sm">
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-2">
+              <Zap className="h-8 w-8 text-[#FBB034]" />
+              <span className="text-2xl font-bold text-gray-900">Bright India</span>
+            </div>
+
+            {/* Desktop Navigation */}
+            <nav className="hidden md:flex items-center space-x-8">
+              <Link href="#home" className="text-gray-600 hover:text-[#006D77] transition-colors font-medium">
+                Home
+              </Link>
+              <Link href="#products" className="text-gray-600 hover:text-[#006D77] transition-colors font-medium">
+                Products
+              </Link>
+              <Link href="#about" className="text-gray-600 hover:text-[#006D77] transition-colors font-medium">
+                About
+              </Link>
+              <Link href="#contact" className="text-gray-600 hover:text-[#006D77] transition-colors font-medium">
+                Contact
+              </Link>
+            </nav>
+
+            {/* Desktop Buttons */}
+            <div className="hidden md:flex items-center space-x-3">
+              <Button
+                variant="outline"
+                className="bg-white border-[#006D77] text-[#006D77] hover:bg-[#006D77] hover:text-white"
+                onClick={() => setShowPhoneModal(true)}
+              >
+                <Phone className="h-4 w-4 mr-2" />
+                Call Now
+              </Button>
+              <Button
+                className="bg-[#FBB034] hover:bg-[#FFD700] text-white shadow-lg"
+                onClick={() => {
+                  window.open(
+                    "https://wa.me/919325595711?text=Hi%20Bright%20India,%20I%20would%20like%20to%20get%20a%20quote%20for%20LED%20lighting%20products.",
+                    "_blank",
+                  )
+                }}
+              >
+                Get Quote
+              </Button>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="md:hidden p-2 text-gray-600 hover:text-[#006D77] transition-colors"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              <Menu className="h-6 w-6" />
+            </button>
+          </div>
+
+          {/* Mobile Menu */}
+          {mobileMenuOpen && (
+            <div className="md:hidden mt-4 pb-4 border-t border-gray-200">
+              <nav className="flex flex-col space-y-4 mt-4">
+                <Link
+                  href="#home"
+                  className="text-gray-600 hover:text-[#006D77] transition-colors font-medium py-2"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Home
+                </Link>
+                <Link
+                  href="#products"
+                  className="text-gray-600 hover:text-[#006D77] transition-colors font-medium py-2"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Products
+                </Link>
+                <Link
+                  href="#about"
+                  className="text-gray-600 hover:text-[#006D77] transition-colors font-medium py-2"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  About
+                </Link>
+                <Link
+                  href="#contact"
+                  className="text-gray-600 hover:text-[#006D77] transition-colors font-medium py-2"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Contact
+                </Link>
+              </nav>
+
+              {/* Mobile Buttons */}
+              <div className="flex flex-col space-y-3 mt-6">
+                <Button
+                  variant="outline"
+                  className="w-full bg-white border-[#006D77] text-[#006D77] hover:bg-[#006D77] hover:text-white"
+                  onClick={() => {
+                    setShowPhoneModal(true)
+                    setMobileMenuOpen(false)
+                  }}
+                >
+                  <Phone className="h-4 w-4 mr-2" />
+                  Call Now
+                </Button>
+                <Button
+                  className="w-full bg-[#FBB034] hover:bg-[#FFD700] text-white shadow-lg"
+                  onClick={() => {
+                    window.open(
+                      "https://wa.me/919325595711?text=Hi%20Bright%20India,%20I%20would%20like%20to%20get%20a%20quote%20for%20LED%20lighting%20products.",
+                      "_blank",
+                    )
+                    setMobileMenuOpen(false)
+                  }}
+                >
+                  Get Quote
+                </Button>
+              </div>
+            </div>
+          )}
         </div>
-        <span className="text-2xl font-semibold tracking-wide text-[#F0F0F0]">Bright India</span>
-      </div>
-
-      {/* Navigation Links */}
-      <nav className="hidden md:flex items-center space-x-8">
-        {["Home", "Products", "About", "Contact"].map((item) => (
-          <Link
-            key={item}
-            href={`#${item.toLowerCase()}`}
-            className="text-[#F0F0F0] hover:text-[#FFD700] transition duration-200 ease-in-out font-medium tracking-wide"
-          >
-            {item}
-          </Link>
-        ))}
-      </nav>
-
-      {/* Action Buttons */}
-      <div className="hidden md:flex items-center space-x-4">
-        <Button
-          variant="outline"
-          className="rounded-lg border border-[#FFD700] text-[#FFD700] hover:bg-[#FFD700]/10 px-4 py-2 transition duration-200 ease-in-out shadow-sm"
-          onClick={() => setShowPhoneModal(true)}
-        >
-          <Phone className="h-4 w-4 mr-2" />
-          Call Now
-        </Button>
-        <Button
-          className="bg-[#58CCED] hover:bg-[#4BB4D8] text-white rounded-lg px-4 py-2 shadow-md transition duration-200 ease-in-out"
-          onClick={() =>
-            window.open(
-              "https://wa.me/919325595711?text=Hi%20Bright%20India,%20I%20would%20like%20to%20get%20a%20quote%20for%20LED%20lighting%20products.",
-              "_blank"
-            )
-          }
-        >
-          Get Quote
-        </Button>
-      </div>
-    </div>
-  </div>
-</header>
-
-
+      </header>
 
       {/* Phone Modal */}
       {showPhoneModal && (
@@ -151,10 +221,10 @@ export default function HomePage() {
             </div>
 
             <div className="text-center mb-6">
-              <div className="w-16 h-16 bg-gradient-to-br from-purple-100 to-pink-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Phone className="h-8 w-8 text-purple-600" />
+              <div className="w-16 h-16 bg-[#006D77]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Phone className="h-8 w-8 text-[#006D77]" />
               </div>
-              <p className="text-gray-600 mb-4">Call us directly for immediate assistance</p>
+              <p className="text-[#666666] mb-4">Call us directly for immediate assistance</p>
 
               <div className="bg-gray-50 rounded-lg p-4 mb-4">
                 <div className="text-2xl font-bold text-gray-900 mb-2">+91 9325595711</div>
@@ -163,7 +233,7 @@ export default function HomePage() {
 
               <Button
                 onClick={handleCopyPhone}
-                className={`w-full ${copied ? "bg-green-500 hover:bg-green-600" : "bg-purple-500 hover:bg-purple-600"} text-white transition-colors`}
+                className={`w-full ${copied ? "bg-green-500 hover:bg-green-600" : "bg-[#006D77] hover:bg-[#006D77]/90"} text-white transition-colors`}
               >
                 {copied ? (
                   <>
@@ -185,42 +255,60 @@ export default function HomePage() {
       )}
 
       {/* Hero Section */}
-      <section id="home" className="py-20 bg-gradient-to-br from-gray-50 to-white">
+      <section id="home" className="py-20 bg-gradient-to-br from-[#F5F5F5] to-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-              illuminating India with
-              <span className="text-yellow-500 block">Premium LED Solutions</span>
+              Illuminating India with
+              <span className="text-[#FBB034] block">Premium LED Solutions</span>
             </h1>
-            <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+            <p className="text-xl text-[#666666] mb-8 max-w-2xl mx-auto">
               Leading manufacturer and supplier of energy-efficient LED lighting products. From smart bulbs to
               commercial solutions, we light up your world.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button
-                onClick={() => {
-                  const section = document.getElementById("products")
-                  if (section) {
-                  section.scrollIntoView({ behavior: "smooth" })
-                  }
-                }}
-                className="flex items-center justify-center"
-                >
+              <Button size="lg" className="bg-[#006D77] hover:bg-[#006D77]/90 text-white">
                 Explore Products
                 <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-             
+              </Button>
+              <Button size="lg" variant="outline">
+                Learn More
+              </Button>
             </div>
           </div>
         </div>
       </section>
 
-     {/* Featured Products */}
-      <section id="products" className="py-20 bg-gray-50">
+      {/* Stats Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="text-center">
+              <div className="text-3xl font-bold text-gray-900 mb-2">500+</div>
+              <div className="text-[#666666]">Products</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-gray-900 mb-2">10K+</div>
+              <div className="text-[#666666]">Happy Customers</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-gray-900 mb-2">5+</div>
+              <div className="text-[#666666]">Years Experience</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-gray-900 mb-2">99%</div>
+              <div className="text-[#666666]">Satisfaction Rate</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Products */}
+      <section id="products" className="py-20 bg-[#F5F5F5]">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Featured Products</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-[#666666] max-w-2xl mx-auto">
               Discover our most popular LED lighting solutions designed for modern living and working spaces.
             </p>
           </div>
@@ -239,18 +327,23 @@ export default function HomePage() {
                     />
                   </div>
                   <div className="p-6">
-                    <div className="text-sm text-yellow-600 font-medium mb-2">{product.category}</div>
+                    <div className="text-sm text-[#FBB034] font-medium mb-2">{product.category}</div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-3">{product.name}</h3>
-                    <p className="text-gray-600 text-sm mb-4">{product.description}</p>
+                    <p className="text-[#666666] text-sm mb-4">{product.description}</p>
                     <div className="space-y-2">
                       {product.features.slice(0, 2).map((feature, index) => (
-                        <div key={index} className="flex items-center text-sm text-gray-600">
+                        <div key={index} className="flex items-center text-sm text-[#666666]">
                           <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
                           {feature}
                         </div>
                       ))}
                     </div>
-                   
+                    <Button
+                      variant="outline"
+                      className="w-full mt-4 group-hover:bg-[#006D77] group-hover:text-white group-hover:border-[#006D77] transition-colors bg-transparent"
+                    >
+                      View Details
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
@@ -264,7 +357,7 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Product Categories</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-[#666666] max-w-2xl mx-auto">
               Explore our comprehensive range of LED lighting solutions for every need.
             </p>
           </div>
@@ -282,8 +375,8 @@ export default function HomePage() {
                   />
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">{category.name}</h3>
-                <p className="text-gray-600 mb-2">{category.description}</p>
-                <div className="text-sm text-yellow-600 font-medium">{category.productCount}</div>
+                <p className="text-[#666666] mb-2">{category.description}</p>
+                <div className="text-sm text-[#FBB034] font-medium">{category.productCount}</div>
               </div>
             ))}
           </div>
@@ -291,11 +384,11 @@ export default function HomePage() {
       </section>
 
       {/* Previous Work Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-[#F5F5F5]">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Previous Work</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-[#666666] max-w-2xl mx-auto">
               Trusted by major infrastructure projects across India. See how we've illuminated critical transportation
               networks.
             </p>
@@ -316,7 +409,7 @@ export default function HomePage() {
               <CardContent className="p-8">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
-                    <Zap className="h-6 w-6 text-blue-600" />
+                    <Zap className="h-6 w-6 text-[#FBB034]" />
                   </div>
                   <div>
                     <h3 className="text-2xl font-bold text-gray-900">Central Railways</h3>
@@ -329,24 +422,24 @@ export default function HomePage() {
                 </p>
                 <div className="grid grid-cols-2 gap-4 mb-6">
                   <div className="text-center p-4 bg-gray-50 rounded-lg">
-                    <div className="text-2xl font-bold text-gray-900">Pune</div>
-                    <div className="text-sm text-gray-600">Railway Station</div>
+                    <div className="text-2xl font-bold text-gray-900">50+</div>
+                    <div className="text-sm text-[#666666]">Railway Stations</div>
                   </div>
                   <div className="text-center p-4 bg-gray-50 rounded-lg">
                     <div className="text-2xl font-bold text-gray-900">60%</div>
-                    <div className="text-sm text-gray-600">Energy Savings</div>
+                    <div className="text-sm text-[#666666]">Energy Savings</div>
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <div className="flex items-center text-sm text-gray-600">
+                  <div className="flex items-center text-sm text-[#666666]">
                     <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
                     Platform and concourse lighting
                   </div>
-                  <div className="flex items-center text-sm text-gray-600">
+                  <div className="flex items-center text-sm text-[#666666]">
                     <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
                     Emergency and safety lighting systems
                   </div>
-                  <div className="flex items-center text-sm text-gray-600">
+                  <div className="flex items-center text-sm text-[#666666]">
                     <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
                     Smart control and monitoring systems
                   </div>
@@ -368,14 +461,14 @@ export default function HomePage() {
               <CardContent className="p-8">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mr-4">
-                    <Zap className="h-6 w-6 text-orange-600" />
+                    <Zap className="h-6 w-6 text-[#FBB034]" />
                   </div>
                   <div>
                     <h3 className="text-2xl font-bold text-gray-900">National Highways</h3>
                     <p className="text-orange-600 font-medium">Street Lighting Project</p>
                   </div>
                 </div>
-                <p className="text-gray-600 mb-6">
+                <p className="text-[#666666] mb-6">
                   Illuminated 200+ kilometers of national highways with our high-performance LED street lights. The
                   project enhanced road safety during night hours while maintaining optimal energy efficiency and
                   minimal maintenance requirements.
@@ -383,23 +476,23 @@ export default function HomePage() {
                 <div className="grid grid-cols-2 gap-4 mb-6">
                   <div className="text-center p-4 bg-gray-50 rounded-lg">
                     <div className="text-2xl font-bold text-gray-900">200+</div>
-                    <div className="text-sm text-gray-600">Kilometers</div>
+                    <div className="text-sm text-[#666666]">Kilometers</div>
                   </div>
                   <div className="text-center p-4 bg-gray-50 rounded-lg">
                     <div className="text-2xl font-bold text-gray-900">70%</div>
-                    <div className="text-sm text-gray-600">Accident Reduction</div>
+                    <div className="text-sm text-[#666666]">Accident Reduction</div>
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <div className="flex items-center text-sm text-gray-600">
+                  <div className="flex items-center text-sm text-[#666666]">
                     <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
                     High-mast LED street lighting
                   </div>
-                  <div className="flex items-center text-sm text-gray-600">
+                  <div className="flex items-center text-sm text-[#666666]">
                     <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
                     Weather-resistant design
                   </div>
-                  <div className="flex items-center text-sm text-gray-600">
+                  <div className="flex items-center text-sm text-[#666666]">
                     <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
                     Automated dusk-to-dawn operation
                   </div>
@@ -409,26 +502,26 @@ export default function HomePage() {
           </div>
 
           <div className="text-center mt-12">
-            <div className="inline-flex items-center px-6 py-3 bg-yellow-50 rounded-full">
-              <Award className="h-5 w-5 text-yellow-600 mr-2" />
-              <span className="text-yellow-800 font-medium">Trusted by Government Infrastructure Projects</span>
+            <div className="inline-flex items-center px-6 py-3 bg-[#FBB034]/5 rounded-full">
+              <Award className="h-5 w-5 text-[#FBB034] mr-2" />
+              <span className="text-[#006D77] font-medium">Trusted by Government Infrastructure Projects</span>
             </div>
           </div>
         </div>
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 bg-gray-50">
+      <section id="about" className="py-20 bg-[#F5F5F5]">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-4xl font-bold text-gray-900 mb-6">About Bright India</h2>
-              <p className="text-lg text-gray-600 mb-6">
+              <p className="text-lg text-[#666666] mb-6">
                 We are a leading manufacturer and supplier of premium LED lighting solutions in India. With over 5 years
                 of experience, we've been at the forefront of the LED revolution, providing energy-efficient and
                 innovative lighting products.
               </p>
-              <p className="text-lg text-gray-600 mb-8">
+              <p className="text-lg text-[#666666] mb-8">
                 Our commitment to quality, innovation, and customer satisfaction has made us a trusted name in the
                 lighting industry. We serve both residential and commercial markets with a wide range of products
                 designed to meet diverse lighting needs.
@@ -436,17 +529,17 @@ export default function HomePage() {
 
               <div className="grid grid-cols-2 gap-6">
                 <div className="flex items-start space-x-3">
-                  <Award className="h-6 w-6 text-yellow-500 mt-1" />
+                  <Award className="h-6 w-6 text-[#FBB034] mt-1" />
                   <div>
                     <h4 className="font-semibold text-gray-900">Quality Assured</h4>
-                    <p className="text-gray-600 text-sm">ISO certified manufacturing</p>
+                    <p className="text-[#666666] text-sm">ISO certified manufacturing</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <Zap className="h-6 w-6 text-yellow-500 mt-1" />
+                  <Zap className="h-6 w-6 text-[#FBB034] mt-1" />
                   <div>
                     <h4 className="font-semibold text-gray-900">Energy Efficient</h4>
-                    <p className="text-gray-600 text-sm">Up to 80% energy savings</p>
+                    <p className="text-[#666666] text-sm">Up to 80% energy savings</p>
                   </div>
                 </div>
               </div>
@@ -470,15 +563,15 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Get In Touch</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-[#666666] max-w-2xl mx-auto">
               Ready to illuminate your space? Contact us for quotes, product information, or any inquiries.
             </p>
           </div>
 
           <div className="grid lg:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Phone className="h-8 w-8 text-yellow-600" />
+              <div className="w-16 h-16 bg-[#FBB034]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Phone className="h-8 w-8 text-[#FBB034]" />
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-2">Call Us</h3>
               <p className="text-gray-600">+91 9325595711</p>
@@ -486,8 +579,8 @@ export default function HomePage() {
             </div>
 
             <div className="text-center">
-              <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Mail className="h-8 w-8 text-yellow-600" />
+              <div className="w-16 h-16 bg-[#FBB034]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Mail className="h-8 w-8 text-[#FBB034]" />
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-2">Email Us</h3>
               <p className="text-gray-600">info@brightindia.com</p>
@@ -495,8 +588,8 @@ export default function HomePage() {
             </div>
 
             <div className="text-center">
-              <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <MapPin className="h-8 w-8 text-yellow-600" />
+              <div className="w-16 h-16 bg-[#FBB034]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <MapPin className="h-8 w-8 text-[#FBB034]" />
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-2">Visit Us</h3>
               <p className="text-gray-600">164 Somwar Peth</p>
@@ -506,33 +599,57 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Mobile Floating Action Buttons */}
+      <div className="md:hidden fixed bottom-4 left-4 right-4 z-40">
+        <div className="flex space-x-3">
+          <Button
+            className="flex-1 bg-[#006D77] hover:bg-[#006D77]/90 text-white shadow-lg"
+            onClick={() => setShowPhoneModal(true)}
+          >
+            <Phone className="h-4 w-4 mr-2" />
+            Call Now
+          </Button>
+          <Button
+            className="flex-1 bg-[#FBB034] hover:bg-[#FFD700] text-white shadow-lg"
+            onClick={() => {
+              window.open(
+                "https://wa.me/919325595711?text=Hi%20Bright%20India,%20I%20would%20like%20to%20get%20a%20quote%20for%20LED%20lighting%20products.",
+                "_blank",
+              )
+            }}
+          >
+            Get Quote
+          </Button>
+        </div>
+      </div>
+
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <div className="flex items-center space-x-2 mb-4">
-                <Zap className="h-6 w-6 text-yellow-500" />
+                <Zap className="h-6 w-6 text-[#FBB034]" />
                 <span className="text-xl font-bold">Bright India</span>
               </div>
-              <p className="text-gray-400 mb-4">
+              <p className="text-[#CCCCCC] mb-4">
                 Leading the LED revolution with premium lighting solutions for modern India.
               </p>
               <div className="flex space-x-2">
                 <div className="flex items-center">
-                  <Star className="h-4 w-4 text-yellow-500 fill-current" />
-                  <Star className="h-4 w-4 text-yellow-500 fill-current" />
-                  <Star className="h-4 w-4 text-yellow-500 fill-current" />
-                  <Star className="h-4 w-4 text-yellow-500 fill-current" />
-                  <Star className="h-4 w-4 text-yellow-500 fill-current" />
+                  <Star className="h-4 w-4 text-[#FBB034] fill-current" />
+                  <Star className="h-4 w-4 text-[#FBB034] fill-current" />
+                  <Star className="h-4 w-4 text-[#FBB034] fill-current" />
+                  <Star className="h-4 w-4 text-[#FBB034] fill-current" />
+                  <Star className="h-4 w-4 text-[#FBB034] fill-current" />
                 </div>
-                <span className="text-sm text-gray-400">4.9/5 Rating</span>
+                <span className="text-sm text-[#CCCCCC]">4.9/5 Rating</span>
               </div>
             </div>
 
             <div>
               <h4 className="text-lg font-semibold mb-4">Products</h4>
-              <ul className="space-y-2 text-gray-400">
+              <ul className="space-y-2 text-[#CCCCCC]">
                 <li>
                   <Link href="#products" className="hover:text-white transition-colors">
                     Smart Lighting
@@ -558,7 +675,7 @@ export default function HomePage() {
 
             <div>
               <h4 className="text-lg font-semibold mb-4">Company</h4>
-              <ul className="space-y-2 text-gray-400">
+              <ul className="space-y-2 text-[#CCCCCC]">
                 <li>
                   <Link href="#about" className="hover:text-white transition-colors">
                     About Us
@@ -584,7 +701,7 @@ export default function HomePage() {
 
             <div>
               <h4 className="text-lg font-semibold mb-4">Support</h4>
-              <ul className="space-y-2 text-gray-400">
+              <ul className="space-y-2 text-[#CCCCCC]">
                 <li>
                   <Link href="#contact" className="hover:text-white transition-colors">
                     Contact Us
@@ -609,7 +726,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-[#CCCCCC]">
             <p>&copy; 2024 Bright India. All rights reserved. | Illuminating India with Premium LED Solutions</p>
           </div>
         </div>
